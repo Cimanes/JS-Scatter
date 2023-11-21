@@ -1,0 +1,113 @@
+:root {
+  /* Define colors and sizes here for quick reference */
+  --bgColor:      #666;
+  --contColor:    #bbb;
+  --titleColor:   #111;
+  --labelColor:   #029;
+  --tickColor:    #006;
+  --dotColor:     #49e;
+  --overlayColor: #228;
+  --tipColor:     #cd6;
+  --legendColor:  #eee;
+  --axisColor:    #999;
+  --contWidth:     950px;   /*Container - Compare with .js file*/
+  --contHeight:    550px;   /*Container - Compare with .js file*/
+
+}
+
+* { margin: 0; padding: 0;}
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial';
+  background-color: var(--bgColor);
+}
+
+.container {
+  width: var(--contWidth);
+  height: var(--contHeight);
+  background-color: var(--contColor);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px 10px 0px;
+  align-self: center;
+  position: relative;
+}
+
+@media (min-width: 500px) {
+  .main .container {
+    box-shadow: 2px 2px 20px;
+  }
+}
+
+#title {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 550;
+  color: rgb(40, 40, 40);
+}
+#subtitle {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 400;
+  color: rgb(60, 60, 60);
+}
+
+.visHolder {
+  position: absolute;
+  top: 5em;
+}
+
+.dot { stroke: #000; }
+
+#tooltip {
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  position: absolute;
+  padding: 10px;
+  text-align: center;
+  font-size: 12px;
+  background: var(--tipColor);
+  border-radius: 7px;
+  opacity: 0;
+  pointer-events: none;
+  font-family: Arial, Helvetica, sans-serif;
+  /* padding: 10px; */
+}
+
+.legendHolder {
+  position: absolute;
+  background: var(--legendColor);
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.7;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.overlay {
+  position: absolute;
+  background: var(--overlayColor);
+  pointer-events: none;
+}
+
+#y-axis path, #x-axis path {
+  stroke: var(--tickColor);
+  stroke-width: 1;
+  fill: var(--axisColor);
+}
+
+#y-axis text, #x-axis text {
+  color: var(--tickColor);
+}
+
+.Label {
+  font-size: 1.0em;
+  font-weight: bold;
+  fill: var(--labelColor);
+}
