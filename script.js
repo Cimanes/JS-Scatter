@@ -14,13 +14,13 @@ const
   
   legendData = [          // array with objects displayed in the legend
     {Type: 0, color: '#FF9900', label:'Riders with doping allegations'},
-        {Type: 1, color: '#24DBF5', label:'No doping allegations '},
-    ],
+    {Type: 1, color: '#24DBF5', label:'No doping allegations '},
+  ],
   legendHeight = 12,      // Height of each individual legend line (defines font-size too)
 //       const max = Math.max(...myArray.map(item => item.cost));
   legendWidth = 20 + 0.5 * legendHeight * Math.max(...legendData.map(i => i.label.length)),      // Width of the legend box 
   
-  classify = (array) => {     // function to assign "type" to each data object.
+  classify = (array) => {     // function to assign "Type" to each data object.
     array.forEach( (item) => {
       switch(item.Doping) {
         case '': item.Type = 1; break;
@@ -28,8 +28,8 @@ const
         }
       } ) 
     },
-  timeFormat = d3.timeFormat('%M:%S'),    // Convert date to string with specified format 
-  timeParse = d3.timeParse('%M:%S'),      // Convert string with specified format into date
+  timeFormat = d3.timeFormat('%M:%S'),    // Convert date to string with specified format.
+  timeParse = d3.timeParse('%M:%S'),      // Convert string with specified format into date.
       
   // Option 1: complete path of the data file
   dataFile = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
@@ -37,9 +37,8 @@ const
   // dataFile = 'data.json';
 
 // ========================================
-// Create SVG element within visHolder and define dimensions
+// Create SVG element within "visHolder" and define dimensions
 // ========================================
-// eslint-disable-next-line no-undef
 const svgContainer = d3.select('.visHolder')
   .append('svg')
     .attr('width', width + hMargin)
@@ -52,7 +51,7 @@ const svgContainer = d3.select('.visHolder')
 svgContainer
   .append('text')
     .attr('x', width / 2 + 40 )
-    .attr('y', height + 60)
+    .attr('y', height + 40)
     .text(xLabel)
     .attr('class', 'Label');
 
@@ -70,13 +69,12 @@ svgContainer
 // =====================
 // LEGEND
 // =====================
-const legend = d3.select('.legendHolder')
-  .attr('id', 'legend')
+const legend = d3.select('#legend')
   .style('margin-left', hMargin + width - legendWidth +'px')
-  .append('svg')
-  .attr('width', legendWidth)
-  .attr('height', 2 * legendHeight * legendData.length);
+    .attr('width', legendWidth)
+    .attr('height', 2 * legendHeight * legendData.length);
 
+// create square elements for each legend item; define size and apply with corresponding color
 legend
   .selectAll('rect')
   .data(legendData)
@@ -87,6 +85,7 @@ legend
   .attr('height', 0.75 * legendHeight)
   .style('fill', d => d.color);
 
+// create the text for each legend item. 
 legend
   .selectAll('text')
   .data(legendData)
@@ -101,7 +100,6 @@ legend
 // Define the tooltip that will show when mouse is on a bar:
 // ========================================
 const tooltip = d3.select('.tooltip');
-
 
 
  /**======================================== 
@@ -134,11 +132,10 @@ const tooltip = d3.select('.tooltip');
  *   --------     use the data here       --------------------- 
  *   }
  */
-fetch(dataFile)                    // Retrieve the remote file
-  .then(file => file.json())       // Create a JSON object with the response
-  // .then(json => json.data)      // Extract the "data" property from the object
+fetch(dataFile)                    // Retrieve the remote file.
+  .then(file => file.json())       // Create a JSON object with the response.
   .then(data => {                  // use the array in the json in the following operations: 
-    classify(data);
+    classify(data);   // Run the function "classify" to assign Type to all elements of the array.
     
     // =====================
     // --- X Axis
